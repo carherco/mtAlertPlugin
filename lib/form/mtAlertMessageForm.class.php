@@ -48,17 +48,19 @@ class mtAlertMessageForm extends BasemtAlertMessageForm
   protected function configureHelp()
   {
     $this->getWidgetSchema()->setHelps(array(
-      'title'                     => 'The title of the alert will be used as subject of the corresponding mail.',
-      'message'                   => 'Full description of the alert\'s purpose.',
-      'can_be_hidden_permanently' => 'If this is checked, the user will be able to hide this alert permanently.',
-      'condition_description'     => 'A short text that describes when the alert is shown.',
-      'condition_class'           => 'Class that will be user to check the condition. If empty the alert will always be shown.',
+      'title'                     => 'The title of the alert will be used as subject of the corresponding mail.',			
+      'message'                   => 'Full description of the alert\'s purpose.',			
+      'can_be_hidden_permanently' => 'If this is checked, the user will be able to hide this alert permanently.',			
+      'condition_description'     => 'A short text that describes when the alert is shown.',			
+      'condition_class'           => 'Class that will be user to check the condition. If empty the alert will always be shown.',			
       'condition_method'          => 'Method of previously entered class. If this method returns true, the alert will be shown. If empty the alert will always be shown.',
+      'scope'                     => 'Scope of the alert.',
       'show_to_all'               => 'If checked the alert will be shown to everyone.',
+      'show_all_days'             => 'If checked the alert will be shown every day (ignore day_list).',
       'can_be_mailed'             => 'If the alert can be mailed when runing the "sendMail" task.',
-      'show_in_browser'           => 'If checked the alert will be shown in web browsers.',
-      'partial'                   => 'The full path to a partial as in "module/action". Will be appended to the message of the alert.',
-      'day_list'                  => 'The alert will be shown in the checked days.',
+      'show_in_browser'           => 'If checked the alert will be shown in web browsers.',		
+      'partial'                   => 'The full path to a partial as in "module/action". Will be appended to the message of the alert.',	
+      'day_list'                  => 'If show all days is not checked, the alert will be shown in the checked days.',
     ));
   }
 
