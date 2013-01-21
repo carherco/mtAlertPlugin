@@ -42,7 +42,7 @@ class mtAlertMessageForm extends BasemtAlertMessageForm
 
   public function configureValidators()
   {
-    $this->setValidator('day_list', new sfValidatorChoiceMany(array('choices' => mtAlertDay::getDayIds())));
+    $this->setValidator('day_list', new sfValidatorChoice(array('multiple'=>true,'choices' => mtAlertDay::getDayIds())));
   }
 
   protected function configureHelp()
