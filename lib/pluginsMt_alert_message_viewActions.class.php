@@ -22,7 +22,7 @@ class pluginsMt_alert_message_viewActions extends  autoMt_alert_message_viewActi
 
     /* This adds conditions for USER filtering */
     mtAlertMessagePeer::doSelectActiveCriteria($criteria);
-    mtAlertMessagePeer::doSelectCredentialsUsersCriteria($this->getUser()->listCredentials(), array(mtAlertUserHelper::getUsername($this->getUser())), $criteria);
+    mtAlertMessagePeer::doSelectCredentialsUsersCriteria($this->getUser()->getCredentials(), array(mtAlertUserHelper::getUsername($this->getUser())), $criteria);
 
     /* This filter alerts that are not beign shown because of the condition is false */
     foreach (mtAlertMessagePeer::doSelect($criteria) as $o)
