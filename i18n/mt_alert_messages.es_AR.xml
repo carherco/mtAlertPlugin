@@ -13,8 +13,16 @@
         <target>Estado</target>
       </trans-unit>
       <trans-unit>
+        <source>Activation date</source>
+        <target>Fecha de activación</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Deactivation date</source>
+        <target>Fecha de desactivación</target>
+      </trans-unit>
+      <trans-unit>
         <source>Is active</source>
-        <target>¿Se encuentra activada?</target>
+        <target>Activada</target>
       </trans-unit>
       <trans-unit>
         <source>Active</source>
@@ -107,6 +115,10 @@
       <trans-unit>
         <source>Show to everyone</source>
         <target>Mostrar a todos</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Show all days</source>
+        <target>Mostar todos los días</target>
       </trans-unit>
       <trans-unit>
         <source>Will be shown on</source>
@@ -313,6 +325,14 @@
         <target>Método de la clase ingresada arriba. Si este método retorna verdadero la alerta será mostrada. Si no es ingresado, la alerta siempre será mostrada.</target>
       </trans-unit>
       <trans-unit>
+        <source>Scope</source>
+        <target>Ámbito</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Scope of the alert.</source>
+        <target>Ámbito de la alerta.</target>
+      </trans-unit>
+      <trans-unit>
         <source>If checked the alert will be shown to everyone.</source>
         <target>Si se tilda la alerta será mostrada a todos.</target>
       </trans-unit>
@@ -329,8 +349,8 @@
         <target>La ruta completa a un partial de la forma "module/action". El contenido del partial será agregado al mensaje de la alerta.</target>
       </trans-unit>
       <trans-unit>
-        <source>The alert will be shown in the checked days.</source>
-        <target>La alerta será mostrada en los días tildados.</target>
+        <source>If show all days is not checked, the alert will be shown in the checked days.</source>
+        <target>Si "Mostar todos los días" no está activado, la alerta se mostrará en los días indicados aquí.</target>
       </trans-unit>
       <trans-unit>
         <source>Message</source>
