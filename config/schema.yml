@@ -7,6 +7,14 @@ classes:
     description:        The information of the alert
     columns:
       id:
+      activation_date:
+        type: date
+        required: false
+        description: Activation date
+      deactivation_date:
+        type: date
+        required: false
+        description: Deactivation date
       is_active:
         type:             boolean
         default:          true

@@ -22,11 +22,17 @@ class mtAlertMessagePeer extends BasemtAlertMessagePeer
    *
    * @return a Criteria instance
    */
-  static public function doSelectActiveCriteria($criteria = null)
-  {
-    $criteria = is_null($criteria)? new Criteria() : $criteria;
+  static public function doSelectActiveCriteria($criteria = null)			
+  {			
+    $criteria = is_null($criteria)? new Criteria() : $criteria;			
     $criteria->add(mtAlertMessagePeer::IS_ACTIVE, true);
-    return $criteria;
+    $activateRange = $criteria->getNewCriterion(mtAlertMessagePeer::ACTIVATION_DATE, date('Y-m-d'), CRITERIA::LESS_EQUAL);	
+    $activateRange->addAnd($criteria->getNewCriterion(mtAlertMessagePeer::DEACTIVATION_DATE, date('Y-m-d'), CRITERIA::GREATER_EQUAL));			
+    $activateRange->addOr($criteria->getNewCriterion(mtAlertMessagePeer::ACTIVATION_DATE, null, CRITERIA::ISNULL));		
+    $activateRange->addOr($criteria->getNewCriterion(mtAlertMessagePeer::DEACTIVATION_DATE, null, CRITERIA::ISNULL));		
+    $criteria->add($activateRange);
+
+    return $criteria;			
   }
 
   /**
