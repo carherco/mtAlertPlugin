@@ -43,6 +43,10 @@ classes:
         type:             varchar(255)
         required:         false
         description:      The static method to use for the condition. If this method returns true the alert will be shown/mailed.
+      scope:
+        type:             varchar(255)
+        required:         false
+        description:      The scope of the message
       show_to_all:
         type:             boolean
         default:          false

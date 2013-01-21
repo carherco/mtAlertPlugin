@@ -115,6 +115,26 @@ class mtAlertMessagePeer extends BasemtAlertMessagePeer
 
     return $criteria;
   }
+  
+  /**
+   * Returns a criteria that filters mtAlertMessages	
+   * according to the scope.	
+   *		
+   * @param $criteria			
+   *		
+   * @return a Criteria instance			
+   */			
+  static public function doSelectScopeCriteria($criteria = null, $scope = null)			
+  {			
+    $criteria = is_null($criteria)? new Criteria() : $criteria;			
+    if(!is_null($scope))
+    {	
+       $scopeCriteria = $criteria->getNewCriterion(mtAlertMessagePeer::SCOPE, $scope);
+       $scopeCriteria->addOr($criteria->getNewCriterion(mtAlertMessagePeer::SCOPE, null, CRITERIA::ISNULL));		
+       $criteria->addAnd($scopeCriteria);		
+    }
+    return $criteria;			
+  }
 
   /**
    * Returns a criteria that filters by
@@ -158,15 +178,15 @@ class mtAlertMessagePeer extends BasemtAlertMessagePeer
    *
    * @return $criteria
    */
-  static public function doSelectForUser($sf_user, $criteria = null)
+  static public function doSelectForUser($sf_user, $scope, $criteria = null)
   {
     if ($sf_user->isAuthenticated())
     {
-      return self::doSelectForAuthenticatedUser($sf_user, $criteria);
+      return self::doSelectForAuthenticatedUser($sf_user, $scope, $criteria);
     }
     else
     {
-      return self::doSelectForNonAuthenticatedUser($sf_user, $criteria);
+      return self::doSelectForNonAuthenticatedUser($sf_user, $scope, $criteria);
     }
   }
 
@@ -181,9 +201,11 @@ class mtAlertMessagePeer extends BasemtAlertMessagePeer
    *
    * @return $criteria
    */
-  static public function doSelectForNonAuthenticatedUser($sf_user, $criteria = null)
+  static public function doSelectForNonAuthenticatedUser($sf_user, $scope, $criteria = null)
   {
-    $criteria   = self::doSelectDayCriteria(self::doSelectActiveCriteria(self::doSelectBrowserCriteria($criteria)));
+    $criteria = self::doSelectCredentialsUsersCriteria($sf_user->listCredentials(),		
+                                    array(mtAlertUserHelper::getUsername($sf_user)),
+                                    self::doSelectDayCriteria(self::doSelectActiveCriteria(self::doSelectBrowserCriteria(self::doSelectScopeCriteria($criteria,$scope)))));
     $mtAlerts   = array();
     $tmpAlerts  = self::doSelect($criteria);
 
