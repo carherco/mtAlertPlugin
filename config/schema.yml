@@ -51,6 +51,10 @@ classes:
         type:             boolean
         default:          false
         description:      If true, the alert will be shown and/or mailed to everyone.
+      show_all_days:
+        type:             boolean
+        default:          false
+        description:      If true, the alert will be shown all days of the week
       can_be_mailed:
         type:             boolean
         default:          true

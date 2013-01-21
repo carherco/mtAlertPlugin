@@ -110,10 +110,12 @@ class mtAlertMessagePeer extends BasemtAlertMessagePeer
   static public function doSelectDayCriteria($criteria = null)
   {
     $criteria = is_null($criteria)? new Criteria() : $criteria;
-    $criteria->addJoin(mtAlertMessagePeer::ID, mtAlertMessageDayPeer::MT_ALERT_MESSAGE_ID);
-    $criteria->add(mtAlertMessageDayPeer::MT_ALERT_DAY_ID, date('w'));
+    $criteria->addJoin(mtAlertMessagePeer::ID, mtAlertMessageDayPeer::MT_ALERT_MESSAGE_ID, CRITERIA::LEFT_JOIN);	
+    $dayCriteria = $criteria->getNewCriterion(mtAlertMessageDayPeer::MT_ALERT_DAY_ID, date('w'));		
+    $dayCriteria->addOr($criteria->getNewCriterion(mtAlertMessagePeer::SHOW_ALL_DAYS, true));			
+    $criteria->addAnd($dayCriteria);
 
-    return $criteria;
+    return $criteria;	
   }
   
   /**

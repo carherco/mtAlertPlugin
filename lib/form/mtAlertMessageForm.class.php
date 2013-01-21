@@ -65,7 +65,7 @@ class mtAlertMessageForm extends BasemtAlertMessageForm
   protected function doSave($con = null)
   {
     parent::doSave($con);
-    $this->doSaveDayList($con);
+    if($this->getObject()->getShowAllDays()==0) $this->doSaveDayList($con);
   }
 
   protected function updateDefaultsFromObject()
