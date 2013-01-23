@@ -205,7 +205,7 @@ class mtAlertMessagePeer extends BasemtAlertMessagePeer
    */
   static public function doSelectForNonAuthenticatedUser($sf_user, $scope, $criteria = null)
   {
-    $criteria = self::doSelectCredentialsUsersCriteria($sf_user->listCredentials(),		
+    $criteria = self::doSelectCredentialsUsersCriteria($sf_user->getCredentials(),		
                                     array(mtAlertUserHelper::getUsername($sf_user)),
                                     self::doSelectDayCriteria(self::doSelectActiveCriteria(self::doSelectBrowserCriteria(self::doSelectScopeCriteria($criteria,$scope)))));
     $mtAlerts   = array();
